@@ -1,0 +1,23 @@
+<div *ngIf="!loading && !selectedAuthor">
+  <h2>Sorry, no author was found with this id.</h2>
+</div>
+<div *ngIf="selectedAuthor">
+  <h2>Here are details of the Author {{ selectedAuthor.id }}</h2>
+  <div class="row">
+    <div class="col-3">First name:</div>
+    <div class="col-9">{{ selectedAuthor.firstName }}</div>
+  </div>
+  <div class="row">
+    <div class="col-3">Last name:</div>
+    <div class="col-9">{{ selectedAuthor.lastName }}</div>
+  </div>
+  <div class="row">
+    <div class="col-3">Books:</div>
+    <div class="col-9">
+      <ul *ngIf="selectedAuthor.books?.length; else noBooks">
+        <li *ngFor="let book of selectedAuthor.books">{{ book.title }}</li>
+      </ul>
+      <ng-template #noBooks>No books recorded for this author.</ng-template>
+    </div>
+  </div>
+</div>
